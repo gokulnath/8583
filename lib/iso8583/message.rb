@@ -348,6 +348,7 @@ module ISO8583
         message.mti, rest = _mti_format.parse(str)
         bmp,rest = Bitmap.parse(rest)
         bmp.each {|bit|
+          next if bit == 1
           bmp_def      = _definitions[bit]
           value, rest  = bmp_def.field.parse(rest)
           message[bit] = value
